@@ -1,16 +1,36 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <title>Dynamic Timer Example</title>
+    <script>
+        function updateTimer() {
+            var timerElement = document.getElementById("timer");
+            var currentDate = new Date();
+            
+            var month = currentDate.getMonth() + 1;
+            var day = currentDate.getDate();
+            var year = currentDate.getFullYear();
+            var hours = currentDate.getHours();
+            var minutes = currentDate.getMinutes();
+            var seconds = currentDate.getSeconds();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            // Formatting single digits with leading zeros if needed
+            month = month < 10 ? '0' + month : month;
+            day = day < 10 ? '0' + day : day;
+            hours = hours % 12 || 12; // Convert to 12-hour format
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            var dateTimeString = month + '/' + day + '/' + year + ', ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+            timerElement.innerHTML = dateTimeString;
+        }
+        
+        // Update the timer every second (1000 milliseconds)
+        setInterval(updateTimer, 1000);
+    </script>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
+    <p id="timer"></p>
 </body>
-
 </html>
